@@ -19,7 +19,7 @@
     <tr>
         <td>{{$p->id}}</td>
         <td>{{$p->tipo_pago}}</td>
-        <td>{{$p->disponible}}</td>
+        <td>{{($p->disponible) ? 'Si' : 'No'}}</td>
         <td>
          <form action="{{ route('pagos.destroy',$p->id) }}" method="POST">
           <a href="/pagos/{{$p->id}}/edit" class="btn btn-info">Editar</a>         
