@@ -2,13 +2,13 @@
 
 @section('contenido')
 <h2>EDITAR REGISTROS</h2>
-<form action="/tipoPago/{{$tp->id}}" method="POST">
+<form action="/tipoPago/{{$tipoPago->id}}" method="POST">
     @method('PUT')
     @csrf
    
     <div class="mb-3">
         <label for="" class="form-label">Descripcion</label>
-        <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="1" value="{{$tp->descripcion}}">
+        <input id="descripcion" name="descripcion" type="text" class="form-control" tabindex="1" value="{{$tipoPago->descripcion}}">
     </div>
    
     <a href="/tipoPago" class="btn btn-secondary" tabindex="2">Cancelar</a>
