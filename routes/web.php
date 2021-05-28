@@ -20,7 +20,7 @@ Route::get('/', function () {
 
 Route :: resource('articulos', 'App\Http\Controllers\ArticuloController');
 
-Route :: resource('tipoPago','App\Http\Controllers\TipoPagoController');
+Route :: resource('pagos','App\Http\Controllers\PagoController');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');

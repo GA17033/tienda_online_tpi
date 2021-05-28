@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\TipoPago;
+use App\Models\Pago;
 use Illuminate\Http\Request;
 
-class TipoPagoController extends Controller
+class PagoController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,18 +14,18 @@ class TipoPagoController extends Controller
      */
     public function index()
     {
-        $tipoPago = TipoPago::all();
-        return view ('tipoPago.index')->with('tipoPago', $tipoPago);
+        $pago = Pago::all();
+        return view ('pago.index')->with('pago', $pago);
     }
 
-     /**
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   
-        return view ('tipoPago.create');
+    {
+        return view ('pago.create');
     }
 
     /**
@@ -36,26 +36,27 @@ class TipoPagoController extends Controller
      */
     public function store(Request $request)
     {
-        $tipoPago = new TipoPago();
-        $tipoPago->descripcion = $request->get('descripcion');
+        $pago = new Pago();
+        $pago->tipo_pago = $request->get('tipo_pago');
+        $pago->disponible = $request->get('disponible')? true : false;
 
-        $tipoPago->save();
+        $pago->save();
 
-        return redirect('/tipoPago');
+        return redirect('/pagos');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\TipoPago  $tipoPago
+     * @param  \App\Models\Pago  $pago
      * @return \Illuminate\Http\Response
      */
-    public function show(TipoPago $tipoPago)
+    public function show(Pago $pago)
     {
         //
     }
 
-     /**
+    /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
@@ -63,8 +64,8 @@ class TipoPagoController extends Controller
      */
     public function edit($id)
     {
-        $tipoPago = TipoPago::find($id);
-        return view ('tipoPago.edit')->with('tipoPago', $tipoPago);
+        $pago = Pago::find($id);
+        return view ('pago.edit')->with('pago', $pago);
     }
 
     /**
@@ -76,13 +77,13 @@ class TipoPagoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $tipoPago = TipoPago :: find($id);
+        $pago = Pago :: find($id);
+        $pago->tipo_pago = $request->get('tipo_pago');
+        $pago->disponible = $request->get('disponible')? true : false;
 
-        $tipoPago->descripcion = $request->get('descripcion');
+        $pago->save();
 
-        $tipoPago->save();
-
-        return redirect('/tipoPago');
+        return redirect('/pagos');
     }
 
     /**
@@ -93,10 +94,10 @@ class TipoPagoController extends Controller
      */
     public function destroy($id)
     {
-        $tipoPago= TipoPago :: find($id);
+        $pago= Pago :: find($id);
 
-        $tipoPago->delete();
+        $pago->delete();
 
-        return redirect('/tipoPago');
+        return redirect('/pagos');
     }
 }
